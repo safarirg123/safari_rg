@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Safari RG</string>
+    <string name="maps_api_key">AIzaSyAbhoe6-S7bioJ-S99MM-V4W2FBi04Hojg</string>
+    <string name="login">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="register_link">Don\'t have an account? Register</string>
+    <string name="register">Register</string>
+    <string name="login_link">Already have an account? Login</string>
+    <string name="full_name_hint">Full Name</string>
+</resources>
