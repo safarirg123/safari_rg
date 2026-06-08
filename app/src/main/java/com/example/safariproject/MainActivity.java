@@ -16,8 +16,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private final Handler handler = new Handler();
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        randomSplash();
+
         //perms setup
         List<String> PermsLST = new ArrayList<>();
         for (String permission : new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
@@ -41,6 +46,33 @@ public class MainActivity extends AppCompatActivity {
         if (!PermsLST.isEmpty())
             ActivityCompat.requestPermissions(this, PermsLST.toArray(new String[0]), REQUEST_CODE);
         else nextScreen();
+    }
+
+    public void randomSplash() {
+
+        Field[] fields = R.drawable.class.getFields();
+        int splashCount = 0;
+        for (Field field : fields)
+            if (field.getName().startsWith("splash_"))
+                splashCount++;
+        Field[] splashFields = new Field[splashCount];
+        int index = 0;
+        for (Field field : fields)
+            if(field.getName().startsWith("splash_"))
+            {
+                splashFields[index] = field;
+                index++;
+            }
+
+        Random rand = new Random();
+        int splashIndex = rand.nextInt(splashFields.length);
+        try {
+            findViewById(R.id.main).setBackgroundResource(splashFields[splashIndex].getInt(null));
+        }
+        catch (IllegalAccessException e) {
+            return;
+        }
+
     }
 
     @Override
