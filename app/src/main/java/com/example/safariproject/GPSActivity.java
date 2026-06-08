@@ -18,10 +18,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap map;
@@ -56,7 +56,7 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        float min_map_zoom = 16f;
+        float min_map_zoom = 15.5f;
         float ratio = (float) 2339 / 1653;
         float scale = 1250f;
         map.setMinZoomPreference(min_map_zoom);
@@ -69,23 +69,7 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
         map.addGroundOverlay(newarkMap);
         map.moveCamera(CameraUpdateFactory.newLatLng(centerAnchor));
         map.setLatLngBoundsForCameraTarget(new LatLngBounds(new LatLng(32.043077, 34.81914), new LatLng(32.052541, 34.831069)));
+        CameraPosition newPosition = CameraPosition.builder(map.getCameraPosition()).bearing(192).build();
+        map.moveCamera(CameraUpdateFactory.newCameraPosition(newPosition));
     }
-
-//    public void permsSetup() {
-//        List<String> PermsLST = new ArrayList<>();
-//        for (String permission : new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
-//            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
-//                PermsLST.add(permission);
-//        ActivityCompat.requestPermissions(this, PermsLST.toArray(new String[0]), REQUEST_CODE);
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == REQUEST_CODE)
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//                mapSetup();
-//            else
-//                Toast.makeText(this, "Error : Permissions Denied", Toast.LENGTH_LONG).show();
-//    }
 }

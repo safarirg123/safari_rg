@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             Intent it1 = new Intent(LoginActivity.this, GPSActivity.class);
             startActivity(it1);
+            finish();
         });
 
         tvGoToRegister = findViewById(R.id.tvGoToRegister);
