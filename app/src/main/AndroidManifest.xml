@@ -8,9 +8,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/karnaf"
+        android:icon="@drawable/logo_rhino"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/karnaf"
+        android:roundIcon="@drawable/logo_rhino"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
