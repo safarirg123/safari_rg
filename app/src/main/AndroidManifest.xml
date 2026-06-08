@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/karnaf"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SafariProject">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".GPSActivity"
             android:exported="false" />
