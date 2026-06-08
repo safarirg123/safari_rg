@@ -57,17 +57,18 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
             return;
         }
         float min_map_zoom = 16f;
-        float ratio = (float) 1653 / 2339;
+        float ratio = (float) 2339 / 1653;
         float scale = 1250f;
         map.setMinZoomPreference(min_map_zoom);
         map.setMyLocationEnabled(true);
-        LatLng centerAnchor = new LatLng(32.044164, 34.823820);
+        LatLng centerAnchor = new LatLng(32.0477332488406, 34.82488114154846);
         GroundOverlayOptions newarkMap = new GroundOverlayOptions()
                 .image(BitmapDescriptorFactory.fromResource(R.drawable.combined_maps_trans))
-                .position(centerAnchor, scale, ratio * scale);
+                .position(centerAnchor, scale, ratio * scale)
+                .bearing(192);
         map.addGroundOverlay(newarkMap);
         map.moveCamera(CameraUpdateFactory.newLatLng(centerAnchor));
-        map.setLatLngBoundsForCameraTarget(new LatLngBounds(new LatLng(32.043077, 34.81914),new LatLng(32.052541, 34.831069)));
+        map.setLatLngBoundsForCameraTarget(new LatLngBounds(new LatLng(32.043077, 34.81914), new LatLng(32.052541, 34.831069)));
     }
 
 //    public void permsSetup() {
